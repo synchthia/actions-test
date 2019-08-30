@@ -1,3 +1,3 @@
 FROM alpine:latest
 
-RUN echo "ACTIONS!!!!!!!!!"
+CMD ["echo", "Hello, World!"]
