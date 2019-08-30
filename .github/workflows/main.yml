@@ -6,11 +6,14 @@ jobs:
     name: build-docker
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: docker://alpine:latest
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: step-1
+        uses: docker://alpine:latest
         run: |
           echo "Hello, World?"
           touch test
-      - uses: docker://ubuntu:latest
+      - name: step-2
+        uses: docker://ubuntu:latest
         run: |
           ls -l
