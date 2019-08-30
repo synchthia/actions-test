@@ -6,18 +6,11 @@ jobs:
     name: build-docker
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-      - name: switch-alpine
-        uses: docker://alpine:latest
-      - name: step-1
-        run: |
-          echo "Hello, World?"
-          touch test
-
-      - name: switch-ubuntu
-        uses: docker://ubuntu:latest
-      - name: step-2
-        run: |
-          ls -l
+      - name: Login to Google Container Registry
+        run: echo $GCP_SERVICE_ACCOUNT | docker login -u _json_key --password-stdin gcr.io
+      - name: Build Image
+        run: docker build . -t gcr.io/synchthia-network/actions-test:latest
+      - name: Push Image
+        run: docker push gcr.io/synchthia-network/actions-test:latest
