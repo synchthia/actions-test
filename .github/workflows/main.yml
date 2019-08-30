@@ -8,12 +8,13 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v1
-      - name: step-1
+
+      - name: init-docker
         uses: docker://alpine:latest
+      - name: step-1
         run: |
           echo "Hello, World?"
           touch test
       - name: step-2
-        uses: docker://ubuntu:latest
         run: |
           ls -l
