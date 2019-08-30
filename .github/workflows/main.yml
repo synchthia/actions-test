@@ -9,12 +9,15 @@ jobs:
       - name: checkout
         uses: actions/checkout@v1
 
-      - name: init-docker
+      - name: switch-alpine
         uses: docker://alpine:latest
       - name: step-1
         run: |
           echo "Hello, World?"
           touch test
+
+      - name: switch-ubuntu
+        uses: docker://ubuntu:latest
       - name: step-2
         run: |
           ls -l
