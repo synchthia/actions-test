@@ -15,7 +15,8 @@ jobs:
           echo "Hello, World?"
           touch test
 
-      - name: step-2
+      - name: switch-ubuntu
         uses: docker://ubuntu:latest
+      - name: step-2
         run: |
           ls -l
