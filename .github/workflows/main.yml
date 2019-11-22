@@ -8,11 +8,14 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Login to Google Container Registry
-        env:
-          GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-        run: docker login -u _json_key -p "$(echo $GCP_SERVICE_ACCOUNT)" gcr.io
-      - name: Build Image
-        run: docker build . -t gcr.io/synchthia-network/actions-test:latest
-      - name: Push Image
-        run: docker push gcr.io/synchthia-network/actions-test:latest
+      - name: switch-alpine
+        uses: docker://alpine:latest
+      - name: step-1
+        run: |
+          echo "Hello, World?"
+          touch test
+
+      - name: step-2
+        uses: docker://ubuntu:latest
+        run: |
+          ls -l
